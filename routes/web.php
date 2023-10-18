@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,8 @@ Route::get('/notes', function(){
 })  ->name('notes.index')
     ->middleware(['auth', 'verified'])
 ;
+
+Route::post('/notes', [NoteController::class, 'store'])->middleware(['auth']);
 
 Route::get('/', function () {
     return view('welcome');
