@@ -71,7 +71,22 @@
                         <div>
                             <h2>{{$note->title}}</h2>
                             <div>
-                                <x-trash class="text-red-500"/>
+                                <form action="/notes/{{$note->id}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button>
+                                        <x-trash class="text-red-500"/>
+                                        <span class="sr-only">{{__('Remove note')}}</span>
+                                    </button>
+                                </form>
+
+
+
+
+
+
+
                             </div>
                         </div>
 
