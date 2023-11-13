@@ -22,4 +22,16 @@ class NoteController extends Controller
         $note->delete();
         return back()->with('success','Your note has been deleted');
     }
+
+    public function update(Note $note){
+        $attributes = request()->validate([
+            'title'=> 'required|max:200',
+            'content'=>'required|min:1|max:255'
+        ]);
+        $note->update($attributes);
+        return back()->with('success', 'Saved');
+    }
+    public function edit(Note $note){
+        return view('notes.edit', ['note'=>$note]);
+    }
 }

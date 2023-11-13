@@ -80,7 +80,10 @@
                                         <span class="sr-only">{{__('Remove note')}}</span>
                                     </button>
                                 </form>
-
+                                <a href="/notes/{{$note->id}}/edit">
+                                    <x-pencil />
+                                    <span class="sr-only">{{__('Edit note')}}</span>
+                                </a>
 
 
 

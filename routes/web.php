@@ -25,6 +25,10 @@ Route::post('/notes', [NoteController::class, 'store'])->middleware(['auth']);
 
 Route::delete('/notes/{note}', [NoteController::class, 'destroy'])->middleware(['auth']);
 
+Route::patch('/notes/{note}', [NoteController::class, 'update'])->middleware(['auth']); //patch hängt mit ändern zusammen
+
+Route::get('/notes/{note:id}/edit', [NoteController::class, 'edit'])->middleware(['auth'])->name('notes.edit');
+
 Route::get('/', function () {
     return view('welcome');
 });
