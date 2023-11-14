@@ -84,7 +84,10 @@
                                     <x-pencil />
                                     <span class="sr-only">{{__('Edit note')}}</span>
                                 </a>
-
+                                <a href="/notes/{{ $note->id }}/show">
+                                    <button>mehr</button>
+                                    <span class="sr-only">{{ __('Show note') }}</span>
+                                </a>
 
 
 
