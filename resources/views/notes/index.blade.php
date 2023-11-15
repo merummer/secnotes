@@ -68,13 +68,25 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100 space-y-6">
                     @foreach(Auth::user()->notes as $note)
-                        <div>
+                        <div class="flex justify-between items-center">
                             <h2>{{$note->title}}</h2>
-                            <div>
+                            <div class="flex items-center space-x-6">
+                                    <form action="/notes/{{$note->favorite}}" method="post">
+                                        @csrf
+                                        @method('FAV')
+                                        <button class="text-yellow-500">
+                                            <x-star/>
+                                            <span class="sr-only">{{__('Favorite')}}</span>
+                                        </button>
+
+                                        <button>
+                                            <x-star/>
+                                            <span class="sr-only">{{__('Favorite')}}</span>
+                                        </button>
+                                    </form>
                                 <form action="/notes/{{$note->id}}" method="post">
                                     @csrf
                                     @method('DELETE')
-
                                     <button>
                                         <x-trash class="text-red-500"/>
                                         <span class="sr-only">{{__('Remove note')}}</span>
@@ -84,13 +96,12 @@
                                     <x-pencil />
                                     <span class="sr-only">{{__('Edit note')}}</span>
                                 </a>
+
+
                                 <a href="/notes/{{ $note->id }}/show">
-                                    <button>mehr</button>
+                                    <x-eye/>
                                     <span class="sr-only">{{ __('Show note') }}</span>
                                 </a>
-
-
-
 
 
                             </div>
