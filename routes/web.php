@@ -25,6 +25,7 @@ Route::post('/notes', [NoteController::class, 'store'])->middleware(['auth']);
 
 Route::delete('/notes/{note}', [NoteController::class, 'destroy'])->middleware(['auth']);
 
+Route::patch('/notes/{note}/favorite',[NoteController::class, 'fav']);
 
 Route::get('/notes/{note:id}/show', [NoteController::class, 'show'])
     ->middleware(['auth']);

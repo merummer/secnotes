@@ -59,6 +59,13 @@ class NoteController extends Controller
         ]);
     }
     public function fav(Note $note){
+        if(!Gate::allows('change-note', $note)){
+            abort(Response::HTTP_FORBIDDEN);
+        }
+        $note->favorite = !$note->favorite;
+        $note->update();
+        return back()->with('success', 'YA');
+
 
     }
 }

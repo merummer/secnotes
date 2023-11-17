@@ -67,22 +67,21 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100 space-y-6">
-                    @foreach(Auth::user()->notes as $note)
+                    @foreach(Auth::user()->notes->sortby([
+                    ['favorite', 'desc'],
+                    ['title', 'asc']
+                            ]) as $note)
                         <div class="flex justify-between items-center">
                             <h2>{{$note->title}}</h2>
                             <div class="flex items-center space-x-6">
-                                    <form action="/notes/{{$note->favorite}}" method="post">
+                                    <form action="/notes/{{$note->id}}/favorite" method="post">
                                         @csrf
-                                        @method('FAV')
-                                        <button class="text-yellow-500">
+                                        @method('PATCH')
+                                        <button style="color:{{$note->favorite ? 'yellow':'gray'}}">
                                             <x-star/>
                                             <span class="sr-only">{{__('Favorite')}}</span>
                                         </button>
 
-                                        <button>
-                                            <x-star/>
-                                            <span class="sr-only">{{__('Favorite')}}</span>
-                                        </button>
                                     </form>
                                 <form action="/notes/{{$note->id}}" method="post">
                                     @csrf
