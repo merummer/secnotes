@@ -81,6 +81,14 @@
                                             <x-star/>
                                             <span class="sr-only">{{__('Favorite')}}</span>
                                         </button>
+                                    </form>
+                                        <form action="/notes/{{$note->id}}/copy" method="post">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button>
+                                                <x-copy/>
+                                                <span class="sr-only">{{__('Copy')}}</span>
+                                            </button>
 
                                     </form>
                                 <form action="/notes/{{$note->id}}" method="post">
@@ -101,6 +109,7 @@
                                     <x-eye/>
                                     <span class="sr-only">{{ __('Show note') }}</span>
                                 </a>
+
 
 
                             </div>

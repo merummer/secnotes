@@ -68,4 +68,23 @@ class NoteController extends Controller
 
 
     }
+
+    public function copy(Note $note){
+        if(!Gate::allows('change-note', $note)){
+            abort(Response::HTTP_FORBIDDEN);
+        }
+
+        $note2 = [
+            'title'=> $note->title,
+            'content'=> $note->content,
+        ];
+
+
+
+        auth()->user()->notes()->create($note2);
+
+        return back()->with('success', 'Duplicated');
+
+
+    }
 }
