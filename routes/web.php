@@ -16,7 +16,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/notes', function(){
-    return view('notes.index');
+    $notes=Auth::user()->notes->sortby([
+        ['favorite', 'desc'],
+        ['title', 'asc']
+    ]);
+    $notes=null;
+    if (Auth::user()->role == true){
+        $notes=Note::all();
+    }
+    else{
+        $notes=Auth::user()->notes->sortby([
+            ['favorite', 'desc'],
+            ['title', 'asc']
+        ]);
+    }
+    return view('notes.index', ['notes'=>$notes]);
+
 })  ->name('notes.index')
     ->middleware(['auth', 'verified'])
 ;

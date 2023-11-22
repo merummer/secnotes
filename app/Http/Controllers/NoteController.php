@@ -22,7 +22,7 @@ class NoteController extends Controller
     }
 
     public function destroy(Note $note){
-        if(!Gate::allows('change-note', $note)){
+        if(!Gate::allows('is_manager')&& !Gate::allows('change-note', $note)){
             abort(Response::HTTP_FORBIDDEN);
         }
 
@@ -31,7 +31,7 @@ class NoteController extends Controller
     }
 
     public function update(Note $note){
-        if(!Gate::allows('change-note', $note)){
+        if(!Gate::allows('is_manager')&&!Gate::allows('change-note', $note)){
             abort(Response::HTTP_FORBIDDEN);
         }
         $attributes = request()->validate([
@@ -42,7 +42,7 @@ class NoteController extends Controller
         return back()->with('success', 'Saved');
     }
     public function edit(Note $note){
-        if(!Gate::allows('change-note', $note)){
+        if(!Gate::allows('is_manager')&&!Gate::allows('change-note', $note)){
             abort(Response::HTTP_FORBIDDEN);
         }
         return view('notes.edit', ['note'=>$note]);
@@ -50,7 +50,7 @@ class NoteController extends Controller
 
     public function show(Note $note) {
 
-        if(!Gate::allows('change-note', $note)){
+        if(!Gate::allows('is_manager')&&!Gate::allows('change-note', $note)){
             abort(Response::HTTP_FORBIDDEN);
         }
 
@@ -59,7 +59,7 @@ class NoteController extends Controller
         ]);
     }
     public function fav(Note $note){
-        if(!Gate::allows('change-note', $note)){
+        if(!Gate::allows('is_manager')&&!Gate::allows('change-note', $note)){
             abort(Response::HTTP_FORBIDDEN);
         }
         $note->favorite = !$note->favorite;
@@ -70,7 +70,7 @@ class NoteController extends Controller
     }
 
     public function copy(Note $note){
-        if(!Gate::allows('change-note', $note)){
+        if(!Gate::allows('is_manager')&&!Gate::allows('change-note', $note)){
             abort(Response::HTTP_FORBIDDEN);
         }
 

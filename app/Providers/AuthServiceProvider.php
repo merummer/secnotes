@@ -28,5 +28,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('change-note', function(User $user, Note $note){
             return $user->id == $note->user_id;
         });
+
+        Gate::define('is_manager', function(User $user){
+            return $user->role == true;
+        });
     }
 }
