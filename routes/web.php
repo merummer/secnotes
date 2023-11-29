@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +36,8 @@ Route::get('/notes', function(){
 })  ->name('notes.index')
     ->middleware(['auth', 'verified'])
 ;
+
+Route::post('/profile', [UserController::class, 'store']);
 
 Route::post('/notes', [NoteController::class, 'store'])->middleware(['auth']);
 
