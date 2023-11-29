@@ -14,6 +14,7 @@ class Note extends Model
         'title',
         'content',
         'favorite',
+        'description',
         'user_id'
     ];
 

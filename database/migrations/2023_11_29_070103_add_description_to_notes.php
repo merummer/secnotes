@@ -9,14 +9,11 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-
-
     public function up(): void
     {
         Schema::table('notes', function (Blueprint $table) {
-            $table->string('description')->default(' ')->change();
+            $table->string('description')->default(' ');
         });
-
     }
 
     /**
@@ -25,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('notes', function (Blueprint $table) {
-            $table->boolean('favorite')->change();
+            //
         });
     }
 };
