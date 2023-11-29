@@ -18,7 +18,7 @@
                     @foreach(User::all() as $users)
                         <h2>{{$users->email}}</h2>
                     @endforeach
-                    <form action="/profile" method="post">
+                    <form action="/users" method="post">
                         @csrf
                         <div>
                             @error('name')

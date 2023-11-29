@@ -37,7 +37,7 @@ Route::get('/notes', function(){
     ->middleware(['auth', 'verified'])
 ;
 
-Route::post('/profile', [UserController::class, 'store']);
+Route::post('/users', [UserController::class, 'store']);
 
 Route::post('/notes', [NoteController::class, 'store'])->middleware(['auth']);
 
